@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Y & Z</title>
+
+<style type="text/css">
+@font-face {
+	font-family: digit;
+	src: url('css/digital-7_mono.ttf') format("truetype");
+}
+</style>
+
+<link href="css/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/garden.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+</head>
+
+<body>
+<!-- 音乐 start-->
+<span id="musicControl">
+        <a id="mc_play" class="on" onclick="play_music();">
+            <audio id="musicfx" loop="loop" autoplay="autoplay">
+                <source src="mp3/miss_u.mp3" type="audio/mpeg">
+            </audio>
+        </a>
+ </span>
+<!-- 音乐 end-->
+<!-- music -->
+<script>
+    function play_music(){
+        if ($('#mc_play').hasClass('on')){
+            $('#mc_play audio').get(0).pause();
+            $('#mc_play').attr('class','stop');
+        }else{
+            $('#mc_play audio').get(0).play();
+            $('#mc_play').attr('class','on');
+        }
+        $('#music_play_filter').hide();
+        event.stopPropagation(); //阻止冒泡
+    }
+    function just_play(id){
+        $('#mc_play audio').get(0).play();
+        $('#mc_play').attr('class','on');
+        if (typeof(id)!='undefined'){
+            $('#music_play_filter').hide();
+        }
+        event.stopPropagation(); //阻止冒泡
+    }
+    function is_weixn(){
+        return false;
+        var ua = navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i)=="micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    var play_filter=document.getElementById('music_play_filter');
+    play_filter.addEventListener('click', function(){
+        just_play(1);
+    });
+    play_filter.addEventListener('touchstart', function(){
+        just_play(1);
+    });
+    play_filter.addEventListener('touchend', function(){
+        just_play(1);
+    });
+    play_filter.addEventListener('touchmove', function(){
+        just_play(1);
+    });
+    play_filter.addEventListener('mousedown', function(){
+        just_play(1);
+    });
+    play_filter.addEventListener('mouseup', function(){
+        just_play(1);
+    });
+    play_filter.addEventListener('mousemove',function(){
+        just_play(1);
+    });
+    window.onload=function(){
+        if (!is_weixn()){
+            just_play();
+        }
+    }
+</script>
+ 
+<div id="mainDiv">
+	<div id="content">
+		<div id="code">
+			<span class="comments">/**</span><br />
+			<span class="space"/><span class="comments">*2013-04-05,</span><br />
+			<span class="space"/><span class="comments">*入学式.</span><br />
+			<span class="space"/><span class="comments">*/</span><br />
+			Boy name = <span class="keyword">Mr</span> U<br />
+			Girl name = <span class="keyword">Miss</span> Z<br /><br /><br />
+			<span class="comments">// 我说你是人间的四月天； </span><br />
+			笑响点亮了四面风；<br />
+			<span class="comments">// 轻灵在春的光艳中交舞着变。</span><br /><br />
+			你是四月早天里的云烟，<br />
+			<span class="comments">// 黄昏吹着风的软，</span><br />
+			星子在无意中闪，细雨点洒在花前。<br /><br />
+			<span class="comments">// 那轻，那娉婷你是，</span><br />
+			鲜妍百花的冠冕你戴着，<br />
+			<span class="comments">// 你是天真，庄严，你是夜夜的月圆。</span><br /><br />
+			雪化后那片鹅黄，你像；<br />
+			<span class="comments">// 新鲜初放芽的绿，你是；</span><br />
+			柔嫩喜悦水光浮动着你梦期待中白莲。<br /><br />
+			<span class="comments">// 你是一树一树的花开，</span><br />
+			是燕在梁间呢喃，——你是爱，是暖，<br />
+			<span class="comments">// 是希望，你是人间的四月天！</span><br />
+			<br>
+
+			<br>
+			I want to say:<br />
+			Baby, I love you forever;<br />
+		</div>
+		<div id="loveHeart">
+			<canvas id="garden"></canvas>
+			<div id="words">
+				<div id="messages">
+					亲爱的，这是我们相爱在一起的时光。
+					<div id="elapseClock"></div>
+				</div>
+				<div id="loveu">
+					天地合乃敢与君绝<br/>
+					<div class="signature">- Mr.U</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="copyright">
+		<a href="#">....</a><br />
+		<a href="#">....</a><br />
+		
+	</div>
+</div>
+
+<script type="text/javascript">
+var offsetX = $("#loveHeart").width() / 2;
+var offsetY = $("#loveHeart").height() / 2 - 55;
+var together = new Date();
+together.setFullYear(2013, 4, 5);
+together.setHours(8);
+together.setMinutes(0);
+together.setSeconds(0);
+together.setMilliseconds(0);
+
+if (!document.createElement('canvas').getContext) {
+	var msg = document.createElement("div");
+	msg.id = "errorMsg";
+	msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+	document.body.appendChild(msg);
+	$("#code").css("display", "none")
+	$("#copyright").css("position", "absolute");
+	$("#copyright").css("bottom", "10px");
+	document.execCommand("stop");
+} else {
+	setTimeout(function () {
+		startHeartAnimation();
+	}, 5000);
+
+	timeElapse(together);
+	setInterval(function () {
+		timeElapse(together);
+	}, 500);
+
+	adjustCodePosition();
+	$("#code").typewriter();
+}
+</script>
+<script type="text/javascript" src="js/snowflakes.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
